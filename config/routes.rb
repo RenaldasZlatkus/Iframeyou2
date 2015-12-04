@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
   #root to: 'users#new'
-  root 'users#new'
-  #root 'home#index'
+  #root 'users#new'
+  root 'home#index'
   # get 'home/index'
-
   get '/signup' => 'users#new'
-post 'users' => 'users#create'
+  post 'users' => 'users#create'
 
 
  get '/login' => 'sessions#new'
@@ -59,7 +58,6 @@ resources :settings
 
   # get 'settings/create'
 
-<<<<<<< HEAD
   # get 'settings/destroy'
 
   # get 'settings/update'

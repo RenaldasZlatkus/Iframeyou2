@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20151203204932) do
+ActiveRecord::Schema.define(version: 20151203204750) do
 
   create_table "settings", force: :cascade do |t|
     t.integer  "frames"
@@ -30,7 +29,6 @@ ActiveRecord::Schema.define(version: 20151203204932) do
 
   add_index "settings", ["user_id"], name: "index_settings_on_user_id"
 
-
   create_table "users", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
@@ -38,8 +36,6 @@ ActiveRecord::Schema.define(version: 20151203204932) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "websites", force: :cascade do |t|

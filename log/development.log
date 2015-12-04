@@ -414,3 +414,511 @@ ActionView::Template::Error (undefined method `background' for nil:NilClass):
   Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
   Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (25.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20151203204750)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "fname" varchar, "lname" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (109.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (99.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateWebsites (20151201135416)
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "websites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar, "user_id_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_websites_on_user_id_id" ON "websites" ("user_id_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151201135416"]]
+  [1m[36m (132.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSettings (20151201135558)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "frames" integer, "skin" varchar, "stye" varchar, "background" varchar, "user_id_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE  INDEX "index_settings_on_user_id_id" ON "settings" ("user_id_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151201135558"]]
+  [1m[35m (116.6ms)[0m  commit transaction
+Migrating to ChangeColumnName (20151201202408)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "asettings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "frames" integer, "skin" varchar, "stye" varchar, "background" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_asettings_on_user_id_id" ON "asettings" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "settings"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "settings"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "frames" integer, "skin" varchar, "stye" varchar, "background" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_asettings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_asettings_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_settings_on_user_id_id" ON "settings" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "asettings"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "asettings"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_settings_on_user_id" ON "settings" ("user_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  DROP INDEX "index_settings_on_user_id_id"
+  [1m[36m (0.1ms)[0m  [1mCREATE TEMPORARY TABLE "awebsites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_awebsites_on_user_id_id" ON "awebsites" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "websites"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "websites"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "websites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_awebsites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_awebsites_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_websites_on_user_id_id" ON "websites" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "awebsites"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "awebsites"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_websites_on_user_id" ON "websites" ("user_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mDROP INDEX "index_websites_on_user_id_id"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151201202408"]]
+  [1m[36m (119.1ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeColumnNameStyle (20151202125149)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "asettings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "frames" integer, "skin" varchar, "style" varchar, "background" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_asettings_on_user_id" ON "asettings" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "settings"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "settings"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "settings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "frames" integer, "skin" varchar, "style" varchar, "background" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_asettings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_asettings_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_settings_on_user_id" ON "settings" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "asettings"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "asettings"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151202125149"]]
+  [1m[36m (116.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddWebsitesToSettings (20151202171930)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "settings" ADD "website1" varchar[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "settings" ADD "website2" varchar
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "settings" ADD "website3" varchar[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "settings" ADD "website4" varchar
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151202171930"]]
+  [1m[35m (119.2ms)[0m  commit transaction
+Migrating to CreateUsers (20151203204750)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "fname" varchar, "lname" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151203204750"]]
+  [1m[35m (121.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_settings_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_websites_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_websites_on_user_id' AND type='index'
+[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:22:17 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (7.9ms)
+Completed 500 Internal Server Error in 344ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (Invalid CSS after "<<<<<<< HEAD": expected "{", was "}"):
+    2: <html>
+    3: <head>
+    4:     <title>Iframeyou</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  app/assets/stylesheets/_skin.scss:20
+  app/views/layouts/application.html.erb:5:in `_app_views_layouts_application_html_erb___1734523071783765766_25661720'
+
+
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.8ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (12.5ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/ren/.rvm/gems/ruby-2.0.0-p643/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (26.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:25:09 +0100
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (56.9ms)
+Completed 200 OK in 1931ms (Views: 1929.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/_background.self-9ec49d583b6953a50b0b1b6e19feb271013aa20fb716c408975899e1bae725c9.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/users.self-179a2690aeaf7ebf90e1fa955046d0cd2702639b9b523ffc1739f6959749196e.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/home.self-c1a0eb33e0cfaba42ffeffec7c2b11fe08605817e288287a52afb050a4424140.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/_skin.self-a7d85aaa34b0771d358dbf5db4ee7db36aa078a5912930a4ce1b79953d2b00f2.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/application.self-062e3c9cdb4ebb57c66531b95b6e6e0c83bb3fc0bcb0caa71e0e7dbfbdebebed.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/_frame_style.self-238b19d7136ceb9b59a2bef036d6fccb405fd0747f53bcb9ddc8751c61af042b.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/application.self-7741914eef5f3ed9186c998bb1a836f4b54a8ea8d7c5c2a8de9f42978d834aff.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/main.self-dea1d871de7ae7e53b87def7f7f2a46cbea5f7412e6560403234c4fdeec266ae.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/websites.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/jquery.fancybox.self-362c6e2b20fd0c8020f2a74a6dacce9ce9bbf2e31a6920f75ff5380830ac940f.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/fancybox.self-c554e97af4cdc8eafeb7c6f90768774a132751893545b63619edb0e571367846.css?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/home" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/main" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/jquery.browser.self-38b39b6fc732c17aa524f14f29b775182de517c1dc8a96007188804620765bfd.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/jquery.fancybox.self-128ac461e83ba76bc61246e8d0a12fa1eb5c3f49b5b8fd7ab9740935da5ec9ce.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/fancybox.self-75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/websites.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:25:11 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+Processing by UsersController#new as */*
+  Rendered users/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 155ms (Views: 153.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/main" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1&_=1449228311474" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1&_=1449228311475" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/jquery.browser.self-38b39b6fc732c17aa524f14f29b775182de517c1dc8a96007188804620765bfd.js?body=1&_=1449228311476" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/jquery.fancybox.self-128ac461e83ba76bc61246e8d0a12fa1eb5c3f49b5b8fd7ab9740935da5ec9ce.js?body=1&_=1449228311477" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/fancybox.self-75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070.js?body=1&_=1449228311478" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1&_=1449228311479" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1&_=1449228311480" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1&_=1449228311481" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1&_=1449228311482" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1&_=1449228311483" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/websites.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1&_=1449228311484" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/assets/application.self-062e3c9cdb4ebb57c66531b95b6e6e0c83bb3fc0bcb0caa71e0e7dbfbdebebed.js?body=1&_=1449228311485" for 127.0.0.1 at 2015-12-04 12:25:17 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 157ms (Views: 155.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/_background.self-9ec49d583b6953a50b0b1b6e19feb271013aa20fb716c408975899e1bae725c9.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/_frame_style.self-238b19d7136ceb9b59a2bef036d6fccb405fd0747f53bcb9ddc8751c61af042b.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/main.self-dea1d871de7ae7e53b87def7f7f2a46cbea5f7412e6560403234c4fdeec266ae.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/home.self-c1a0eb33e0cfaba42ffeffec7c2b11fe08605817e288287a52afb050a4424140.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/application.self-7741914eef5f3ed9186c998bb1a836f4b54a8ea8d7c5c2a8de9f42978d834aff.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/settings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/_skin.self-a7d85aaa34b0771d358dbf5db4ee7db36aa078a5912930a4ce1b79953d2b00f2.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/users.self-179a2690aeaf7ebf90e1fa955046d0cd2702639b9b523ffc1739f6959749196e.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/websites.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/jquery.fancybox.self-362c6e2b20fd0c8020f2a74a6dacce9ce9bbf2e31a6920f75ff5380830ac940f.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/fancybox.self-c554e97af4cdc8eafeb7c6f90768774a132751893545b63619edb0e571367846.css?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/main" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/home" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/jquery.browser.self-38b39b6fc732c17aa524f14f29b775182de517c1dc8a96007188804620765bfd.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/jquery.fancybox.self-128ac461e83ba76bc61246e8d0a12fa1eb5c3f49b5b8fd7ab9740935da5ec9ce.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/fancybox.self-75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/settings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:43 +0100
+
+
+Started GET "/assets/websites.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:44 +0100
+
+
+Started GET "/assets/application.self-062e3c9cdb4ebb57c66531b95b6e6e0c83bb3fc0bcb0caa71e0e7dbfbdebebed.js?body=1" for 127.0.0.1 at 2015-12-04 12:26:44 +0100
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:27:04 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 370ms (Views: 360.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main" for 127.0.0.1 at 2015-12-04 12:27:05 +0100
+
+
+Started GET "/assets/home" for 127.0.0.1 at 2015-12-04 12:27:05 +0100
+
+
+Started GET "/signup" for 127.0.0.1 at 2015-12-04 12:27:17 +0100
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 173ms (Views: 97.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-12-04 12:27:19 +0100
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 145ms (Views: 144.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-04 12:52:12 +0100
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 130ms (Views: 129.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main" for 127.0.0.1 at 2015-12-04 12:52:12 +0100
+
+
+Started GET "/assets/home" for 127.0.0.1 at 2015-12-04 12:52:12 +0100
