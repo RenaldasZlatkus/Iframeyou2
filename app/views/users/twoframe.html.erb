@@ -1,0 +1,19 @@
+
+<% if @settings.style == "2h" %>
+	<iframe src="<%= @settings.website1 %>" class="full <%= @settings.background %>-bg <%= @settings.skin %>"></iframe>
+	<iframe src="<%= @settings.website2 %>" class="full <%= @settings.background %>-bg <%= @settings.skin %>"></iframe>
+<% elsif @settings.style == "2v" %>
+	<iframe src="<%= @settings.website1 %>" class="leftfull <%= @settings.background %>-bg <%= @settings.skin %>"></iframe>
+	<iframe src="<%= @settings.website2 %>" class="rightfull <%= @settings.background %>-bg <%= @settings.skin %>"></iframe>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
