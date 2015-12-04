@@ -1,15 +1,17 @@
 class User < ActiveRecord::Base
 	has_secure_password
 
-	has_many :settings
+	has_one :setting
 	has_many :websites
 
 	validates_presence_of :fname
 	validates_presence_of :lname
 	validates :email, uniqueness: { case_sensitive: true }
 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+	validates :password, length: { in: 4..20 }
 	validates_presence_of :password 
 	validates_confirmation_of :password
+	
 
 	after_create :set_defaults
 

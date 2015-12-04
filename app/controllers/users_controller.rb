@@ -7,7 +7,6 @@ before_filter :authorize
   end
 
   def show
-      def show
     @user = User.find_by_id params[:id]
     @settings = @user.setting
     if @settings.frames == 1
@@ -20,8 +19,6 @@ before_filter :authorize
       render :fourframe
     end 
   end 
-
-  end
 
    def new
     @user = User.new
@@ -61,4 +58,4 @@ end
       params.require(:user).permit( :fname, :lname, :email, :password, :password_confirmation)
     end
   end
-
+ 
