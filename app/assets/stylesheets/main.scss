@@ -1,0 +1,126 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'frame_style';
+@import 'skin';
+@import 'background';
+// home page
+// background image
+#bg {
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -10;
+}
+// sign up and login links
+#refs {
+	text-align: center;
+	position: relative;
+	top: 250px;
+	width: 100%;
+}
+
+.click {
+	// text-align: center;
+	font-size: 25px;
+	color: black;
+	display: inline;
+
+	a {
+		color: black;
+		font-size: 25px;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: white;
+		border: 1px solid black;
+		background: black;
+
+	}
+}
+// sign up link
+.leftclick {
+	float: left;
+}
+// login link
+.rightclick {
+	float: right;
+}
+// header
+h1 {
+	text-align: center;
+}
+// description ¶ though it's been commented out and added to the bg image
+#description {
+	width: 500px;
+	margin: auto;
+	font-style: Arial Narrow;
+	font-size: 20px;
+	border: 3px solid black;
+	background: black;
+	opacity: .7;
+	color: aqua;
+}
+
+ // general styling for menu image (three bars)
+.menu {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 30px;
+	text-align: center;
+	height: 30px;
+
+
+}
+// general styling for menu image in opened menubox
+.menubox {
+	position: absolute;
+	top: 4px;
+	right: 9px;
+}
+
+// styling for image in particular
+#image {
+	width: 20px;
+	margin-top: 4px;
+}
+
+// .options {
+// 	opacity: 1;
+// }
+
+// menubox itself
+.settings {
+	width: 250px;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	color: black;
+	padding-left: 7px;
+	font-size: 20px;
+}
+
+.category-box {
+	background: rgba(255, 255, 255, .7);
+	padding-left: 5px;
+	margin: 5px;
+}
+
+// icons in menubox
+.icon {
+	width: 20px;
+	opacity: 1;
+}
+
+// submit button
+#submit {
+	text-align: center;
+}
+
+// #menubutton {
+// 	margin: auto;
+// 	width: 75px;
+// }

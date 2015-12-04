@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Framebook</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="usernav">
+ <% if current_user %>
+      Signed in as <%= current_user.fname %> <%= current_user.lname %> | <%= link_to "Logout", '/logout' %> 
+    <% else %>
+      ||<%= link_to 'Login', '/login' %> || <%= link_to 'Signup', '/signup' %>
+    <% end %>
+
+</div>
+
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+<div>
+  <a href="#" class="menu <%= @settings.background %>-bg <%= @settings.skin %>"><img src="/images/threebars.png" id="image"></a>
+
+  <div class="settings <%= @settings.background %>-bg <%= @settings.skin %>">
+    <a href="#" class="menubox"><img src="/images/threebars.png" id="image"></a>
+    <br><br>
+
+    <div class="category-box">
+      <p>
+        Frames and Layout
+      </p>
+      <div id="frames-and-layouts">
+        <a href="#" class="options" data-field-value="1" data-field-number="1"><img src="/images/1.png" class="icon one"></a>
+        <a href="#" class="options" data-field-value="2h" data-field-number="2"><img src="/images/2h.png" class="icon two"></a>
+        <a href="#" class="options" data-field-value="2v" data-field-number="2"><img src="/images/2v.png" class="icon two"></a>
+        <a href="#" class="options" data-field-value="3h" data-field-number="3"><img src="/images/3h.png" class="icon three"></a>
+        <a href="#" class="options" data-field-value="3t"  data-field-number="3"><img src="/images/3t.png" class="icon three"></a>
+        <a href="#" class="options" data-field-value="3b"  data-field-number="3"><img src="/images/3b.png" class="icon three"></a>
+        <a href="#" class="options" data-field-value="4a" data-field-number="4"><img src="/images/4a.png" class="icon four"></a>
+        <a href="#" class="options" data-field-value="4t" data-field-number="4"><img src="/images/4t.png" class="icon four"></a>
+        <a href="#" class="options" data-field-value="4b" data-field-number="4"><img src="/images/4b.png" class="icon four"></a>
+      </div>
+    </div>
+    <div class="category-box">
+      <p>
+        Skin
+      </p>
+      <div id="skin">
+        <a href="#" class="options" data-field-value="black"><img src="/images/black.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="white"><img src="/images/white.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="pink"><img src="/images/pink.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="purple"><img src="/images/purple.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="blue"><img src="/images/blue.png" class="icon"></a>
+      </div>
+    </div>
+    <div class="category-box">
+    <p>
+      Background
+    </p>
+      <div id="background">
+        <a href="#" class="options" data-field-value="black"><img src="/images/black.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="white"><img src="/images/white.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="pink"><img src="/images/pink.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="purple"><img src="/images/purple.png" class="icon"></a>
+        <a href="#" class="options" data-field-value="blue"><img src="/images/blue.png" class="icon"></a>
+      </div>
+    </div>
+      <br><br>
+    <%= form_for @settings, url: user_settings_path(@user) do |f| %>
+    <%= f.hidden_field :frames %>
+    <%= f.hidden_field :style %>
+    <%= f.hidden_field :skin %>
+    <%= f.hidden_field :background %>
+    <div id="web1" class="categories">
+    <%= f.label :website1, 'Website For Frame One' %><br>
+    <%= f.text_field :website1 %><br><br>
+    </div>
+    <div id="web2" class="categories">
+    <%= f.label :website2, 'Website For Frame Two' %><br>
+    <%= f.text_field :website2 %><br><br>
+    </div>
+    <div id="web3" class="categories">
+    <%= f.label :website3, 'Website For Frame Three' %><br>
+    <%= f.text_field :website3 %><br><br>
+    </div>
+    <div id="web4" class="categories">
+    <%= f.label :website4, 'Website For Frame Four' %><br>
+    <%= f.text_field :website4 %><br><br>
+    </div>
+    <div id="submit">
+      <%= f.submit 'Submit' %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

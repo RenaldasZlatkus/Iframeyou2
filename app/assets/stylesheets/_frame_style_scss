@@ -1,0 +1,85 @@
+// default frame settings
+%iframe {
+	width: 49.5%;
+	height: 21.5em;
+	// border: 2px solid blue; 
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+// setting for one frame
+#fullscreen {
+	@extend %iframe;
+	width: 100%;
+	height: 43em;
+
+}
+// setting for half height, full screen
+.full {
+	@extend %iframe;
+	width: 100%;
+}
+// setting for full height, half width, left
+.leftfull {
+	@extend %iframe;
+	height: 43em;
+}
+// setting for full height, half width, right
+.rightfull {
+	@extend %iframe;
+	height: 43em;
+	float: right;
+}
+// setting for half height, half width, left
+.left {
+	@extend %iframe;
+}
+// setting for half height, half width, right
+.right {
+	@extend %iframe;
+	float: right;
+}
+// setting for full height, 1/3rd width, left
+.leftthree {
+	@extend %iframe;
+	width: 32%;
+	height: 43em;
+	float: left;
+}
+// setting for full height, 1/3rd width, middle
+.middlethree {
+	@extend %iframe;
+	width: 32%;
+	height: 43em;
+	float: left;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+// setting for full height, 1/3rd width, right
+.rightthree {
+	@extend %iframe;
+	width: 32%;
+	height: 43em;
+	float: right;
+}
+// setting for half height, 1/3rd width, left
+.halfleftthree {
+	@extend %iframe;
+	width: 32%;
+	float: left;
+}
+// setting for half height, 1/3rd width, middle
+.halfmiddlethree {
+	@extend %iframe;
+	width: 32%;
+	float: left;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+// setting for half height, 1/3rd width, right
+.halfrightthree {
+	@extend %iframe;
+	width: 32%;
+	float: right;
+}

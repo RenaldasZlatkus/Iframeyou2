@@ -1,0 +1,46 @@
+  <h1>style needed!</h1>
+  
+
+
+  <% if @user.errors.full_messages.any?%>
+  <ul>
+   <% @user.errors.full_messages.each do |error_message| %>
+   <li> <%= error_message %> </li> <br>
+   <% end %>
+  </ul>
+  <% end %>	
+
+<%= link_to "sign up", "#signup_form", class: "fancybox" %>
+<div class="fanbox">
+  <div style="display:none">
+  <!-- <form id="signup_form" method="post" action="signup">
+        <p id="signup_error">Sign up for awesomeness </p> -->
+
+
+  <ul>  
+   <%= form_for @user, url: '/users' do |f| %>
+   <%= f.label :fname, 'Firstname' %>
+   <%= f.text_field :fname %>
+   <br> <br>
+   <%= f.label :lname, 'Last' %>
+   <%= f.text_field :lname %>
+   <br> <br>
+   <%= f.label :email, 'Email' %>
+   <%= f.text_field :email %>
+   <br> <br>
+   <%= f.label :password, 'Password' %>
+   <%= f.password_field :password %>
+   <br> <br>
+   <%= f.label :password_confirmation, 'Password Confirmation' %>
+   <%= f.password_field :password_confirmation %>
+   <br> <br>
+   <%= f.submit :'Submit' %>
+   <% end %>
+
+  </ul>
+     <p>
+  <em> Resizing needed! </em>
+    </p>
+  <!-- </form> -->
+ </div>
+</div>
