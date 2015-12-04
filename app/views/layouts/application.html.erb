@@ -19,6 +19,7 @@
     <%= flash[:notice] %>
     <%= flash[:alert] %>
 <div>
+<% if current_user %>
   <a href="#" class="menu <%= @settings.background %>-bg <%= @settings.skin %>"><img src="/images/threebars.png" id="image"></a>
 
   <div class="settings <%= @settings.background %>-bg <%= @settings.skin %>">
@@ -93,7 +94,7 @@
     <% end %>
   </div>
 </div>
-
+<% end %>
 <%= yield %>
 
 </body>
